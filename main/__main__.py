@@ -8,6 +8,7 @@ def in_sudo_mode():
         exit()
 
 
+in_sudo_mode()
 clear = lambda: os.system("clear")
 os.system("sudo apt install netcat -y")
 clear()
