@@ -40,4 +40,4 @@ elif host == "2":
 
 elif host == "3":
     clear()
-    os.system("python3 client.py 192.168.55.13 8081")
+    os.system("python3 client.py")
