@@ -34,6 +34,7 @@ print("[+] Connected.")
 
 # prompt the client for a name
 name = input("Enter your name: ")
+print("")
 
 def listen_for_messages():
     while True:
@@ -49,7 +50,7 @@ t.start()
 
 while True:
     # input message we want to send to the server
-    to_send =  input()
+    to_send =  input(""+ name+" >>> ")
     # a way to exit the program
     if to_send.lower() == 'q':
         break
