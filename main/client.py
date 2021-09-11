@@ -1,39 +1,62 @@
-# Python program to implement client side of chat room.
 import socket
-import select
-import sys
+import random
+from threading import Thread
+from datetime import datetime
+from colorama import Fore, init, Back
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-if len(sys.argv) != 3:
-	print ("Correct usage: script, IP address, port number")
-	exit()
-IP_address = str(sys.argv[1])
-Port = int(sys.argv[2])
-server.connect((IP_address, Port))
+# init colors
+init()
+
+# set the available colors
+colors = [Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.LIGHTBLACK_EX, 
+    Fore.LIGHTBLUE_EX, Fore.LIGHTCYAN_EX, Fore.LIGHTGREEN_EX, 
+    Fore.LIGHTMAGENTA_EX, Fore.LIGHTRED_EX, Fore.LIGHTWHITE_EX, 
+    Fore.LIGHTYELLOW_EX, Fore.MAGENTA, Fore.RED, Fore.WHITE, Fore.YELLOW
+]
+
+# choose a random color for the client
+client_color = random.choice(colors)
+
+# server's IP address
+# if the server is not on this machine, 
+# put the private (network) IP address (e.g 192.168.1.2)
+SERVER_HOST = "127.0.0.1"
+SERVER_PORT = 5002 # server's port
+separator_token = "<SEP>" # we will use this to separate the client name & message
+
+# initialize TCP socket
+s = socket.socket()
+print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
+# connect to the server
+s.connect((SERVER_HOST, SERVER_PORT))
+print("[+] Connected.")
+
+# prompt the client for a name
+name = input("Enter your name: ")
+
+def listen_for_messages():
+    while True:
+        message = s.recv(1024).decode()
+        print("\n" + message)
+
+# make a thread that listens for messages to this client & print them
+t = Thread(target=listen_for_messages)
+# make the thread daemon so it ends whenever the main thread ends
+t.daemon = True
+# start the thread
+t.start()
 
 while True:
+    # input message we want to send to the server
+    to_send =  input()
+    # a way to exit the program
+    if to_send.lower() == 'q':
+        break
+    # add the datetime, name & the color of the sender
+    date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+    to_send = f"{client_color}[{date_now}] {name}{separator_token}{to_send}{Fore.RESET}"
+    # finally, send the message
+    s.send(to_send.encode())
 
-	# maintains a list of possible input streams
-	sockets_list = [sys.stdin, server]
-
-	""" There are two possible input situations. Either the
-	user wants to give manual input to send to other people,
-	or the server is sending a message to be printed on the
-	screen. Select returns from sockets_list, the stream that
-	is reader for input. So for example, if the server wants
-	to send a message, then the if condition will hold true
-	below.If the user wants to send a message, the else
-	condition will evaluate as true"""
-	read_sockets,write_socket, error_socket = select.select(sockets_list,[],[])
-
-	for socks in read_sockets:
-		if socks == server:
-			message = socks.recv(2048)
-			print (message)
-		else:
-			message = sys.stdin.readline()
-			server.send(message)
-			sys.stdout.write("<You>")
-			sys.stdout.write(message)
-			sys.stdout.flush()
-server.close()
+# close the socket
+s.close()
