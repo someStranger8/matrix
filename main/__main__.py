@@ -1,5 +1,12 @@
 
-import os
+import os, sys
+
+def in_sudo_mode():
+    """If the user doesn't run the program with super user privileges, don't allow them to continue."""
+    if not 'SUDO_UID' in os.environ.keys():
+        print("Try running this program with sudo.")
+        exit()
+
 
 clear = lambda: os.system("clear")
 os.system("sudo apt install netcat -y")
