@@ -11,7 +11,6 @@ def in_sudo_mode():
 in_sudo_mode()
 clear = lambda: os.system("clear")
 os.system("pip3 install colorama")
-os.system("pip3 install playsound")
 os.system("sudo apt install netcat -y")
 clear()
 
