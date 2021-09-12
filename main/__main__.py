@@ -11,6 +11,7 @@ def in_sudo_mode():
 in_sudo_mode()
 clear = lambda: os.system("clear")
 os.system("pip3 install colorama")
+os.system("pip3 install pygame")
 os.system("sudo apt install netcat -y")
 clear()
 
@@ -41,4 +42,5 @@ elif host == "2":
 elif host == "3":
     clear()
     os.chdir("main")
+    os.chdir("client")
     os.system("python3 client.py")
