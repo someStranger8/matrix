@@ -1,18 +1,12 @@
 
 import socket
 import random
-from playsound import playsound
 from threading import Thread
 from datetime import datetime
 from colorama import Fore, init, Back
 
 # init colors
 init()
-
-# audio
-audio = ["file1.mp3", "file2.mp3", "file3.mp3", "file4.mp3"]
-game = random.choice(audio)
-playsound(game)
 
 # set the available colors
 colors = [Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.LIGHTBLACK_EX, 
