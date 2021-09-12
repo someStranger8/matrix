@@ -40,4 +40,5 @@ elif host == "2":
 
 elif host == "3":
     clear()
+    os.chdir("main")
     os.system("python3 client.py")
