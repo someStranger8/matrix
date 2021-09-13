@@ -33,6 +33,8 @@ s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected.")
 
 # prompt the client for a name
+print("please do not press ctrl+c")
+print("")
 name = input("Enter your name: ")
 print("")
 
