@@ -1,5 +1,10 @@
 import socket
+from os import system
 from threading import Thread
+
+# clear
+clear = lambda: system("clear")
+clear()
 
 # server's IP address
 SERVER_HOST = "0.0.0.0"
