@@ -6,4 +6,6 @@ cd hello
 sudo python3 main
 ```
 
-https://discord.gg/KjQdAYFE
+![Movie-Like Cast](capture_orig.gif?raw=true "cmatrix -xba")
+
+discord: https://discord.gg/KjQdAYFE
