@@ -1,7 +1,7 @@
 # hello
 
 ```bash
-git clone https://github.com/someStranger8/hello
+git clone https://github.com/someStranger8/matrix
 cd hello
 sudo python3 main
 ```
