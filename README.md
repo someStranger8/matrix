@@ -1,4 +1,4 @@
-# hello
+# matrix
 
 ```bash
 git clone https://github.com/someStranger8/matrix
