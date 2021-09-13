@@ -21,6 +21,7 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind((SERVER_HOST, SERVER_PORT))
 # listen for upcoming connections
 s.listen(5)
+
 print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 
 
