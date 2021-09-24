@@ -24,6 +24,7 @@ try:
     s.listen(5)
     
     print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
+    os.system("hostname -i")
     
     
     def listen_for_client(cs):
