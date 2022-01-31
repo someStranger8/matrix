@@ -2,7 +2,7 @@
 
 ```bash
 git clone https://github.com/someStranger8/matrix
-cd hello
+cd matrix
 sudo python3 main
 ```
 
