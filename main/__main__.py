@@ -10,36 +10,20 @@ def in_sudo_mode():
 
 in_sudo_mode()
 clear = lambda: os.system("clear")
-os.system("pip3 install colorama")
-os.system("sudo apt install netcat -y")
 clear()
 
+print(banner)
 
-print("hello")
-print("")
-print("enter 1 to host a server or 2 to join one")
-host=input("or 3 for global chat >>> ")
+while True:
+  host = input("Would you like to host a server or join one (h/j) >>> ")
 
+  if host == "h":
+    os.system("python3 server/server.py")
+    break
+    
+  elif host == "j":
+    os.system("python3 client/client.py")
+    break
 
-if host == "1":
-     clear()
-     print("server ip:")
-     os.system("hostname -i")
-     print("server status: online")
-     print("")
-     os.system("nc -lp 4444")
-
-
-elif host == "2":
-     ip=input("enter server ip >>> ")
-     clear()
-     print("connected to server")
-     print("")
-     os.system("nc "+ ip+" 4444")
-
-
-elif host == "3":
-    clear()
-    os.chdir("main")
-    os.chdir("client")
-    os.system("python3 client.py")
+  else:
+    print("please enter \'h\' or \'j\'")
